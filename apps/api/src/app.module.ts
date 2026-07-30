@@ -8,9 +8,10 @@ import { createGlobalValidationPipe } from "./common/pipes/validation.pipe.js";
 import { ConfigurationModule } from "./config/configuration.module.js";
 import { HealthModule } from "./health/health.module.js";
 import { LoggerModule } from "./logger/logger.module.js";
+import { PrismaModule } from "./prisma/prisma.module.js";
 
 @Module({
-  imports: [ConfigurationModule, LoggerModule, HealthModule],
+  imports: [ConfigurationModule, LoggerModule, HealthModule, PrismaModule],
   controllers: [AppController],
   providers: [
     AppService,
