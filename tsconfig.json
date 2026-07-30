@@ -1,0 +1,26 @@
+{
+  "extends": "./packages/config/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@engineeros/ui": ["packages/ui/src/index.ts"],
+      "@engineeros/types": ["packages/types/src/index.ts"],
+      "@engineeros/config/*": ["packages/config/*"]
+    }
+  },
+  "include": [],
+  "references": [
+    {
+      "path": "./apps/web"
+    },
+    {
+      "path": "./apps/api"
+    },
+    {
+      "path": "./packages/ui"
+    },
+    {
+      "path": "./packages/types"
+    }
+  ]
+}

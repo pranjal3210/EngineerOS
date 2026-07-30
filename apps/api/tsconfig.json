@@ -1,0 +1,14 @@
+{
+  "extends": "@engineeros/config/tsconfig/nest",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@engineeros/types": ["../../packages/types/src/index.ts"]
+    },
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
