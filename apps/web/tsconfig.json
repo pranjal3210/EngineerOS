@@ -3,9 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@engineeros/ui": ["../../packages/ui/src/index.ts"],
-      "@engineeros/types": ["../../packages/types/src/index.ts"]
+      "@/*": ["./src/*"]
+      
     }
   },
   "include": [

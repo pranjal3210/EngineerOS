@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@engineeros/types": ["../../packages/types/src/index.ts"]
+      "@/*": ["./src/*"]
+      
     },
     "rootDir": "src",
     "outDir": "dist"
