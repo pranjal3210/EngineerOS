@@ -7,13 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum OrganizationRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
 model User {
-  id           String   @id @default(uuid()) @db.Uuid
-  email        String   @unique @db.VarChar(255)
-  name         String   @db.VarChar(255)
-  passwordHash String   @db.VarChar(255)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id           String          @id @default(uuid()) @db.Uuid
+  email        String          @unique @db.VarChar(255)
+  name         String          @db.VarChar(255)
+  passwordHash String          @db.VarChar(255)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  memberships  OrgMembership[] @relation("UserMemberships")
 
   @@map("users")
+}
+
+model Organization {
+  id          String          @id @default(uuid()) @db.Uuid
+  name        String          @db.VarChar(255)
+  slug        String          @unique @db.VarChar(255)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  memberships OrgMembership[] @relation("OrganizationMemberships")
+
+  @@map("organizations")
+}
+
+model OrgMembership {
+  id             String           @id @default(uuid()) @db.Uuid
+  userId         String           @db.Uuid
+  organizationId String           @db.Uuid
+  role           OrganizationRole @default(MEMBER)
+  createdAt      DateTime         @default(now())
+  user           User             @relation("UserMemberships", fields: [userId], references: [id], onDelete: Cascade)
+  organization   Organization     @relation("OrganizationMemberships", fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@index([userId])
+  @@index([organizationId])
+  @@map("organization_members")
 }
